@@ -6,12 +6,11 @@ A multipurpose, **full-featured**, **middleware-oriented** and **hackable** **HT
 Built for [node.js](http://nodejs.org)/[io.js](https://iojs.org).
 
 **rocky** can be fluently used [programmatically](#programmatic-api) or via [command-line](#command-line) interface.
-It's is framework agnostic, but you can optionally plug in with [connect](https://github.com/senchalabs/connect)/[express](http://expressjs.com) apps.
+It's framework agnostic, but you can optionally plug in with [connect](https://github.com/senchalabs/connect)/[express](http://expressjs.com) apps.
 
 To get started, take a look to [how does it work](#how-does-it-work), [basic usage](#usage), [middleware layer](#middleware-layer) and [examples](/examples).
 
-Requires node.js +0.12 or io.js +1.6.
-Note that `retry` feature is temporary not supported in latest `node.js` versions.
+**Note**: `retry` feature is temporary not available in latest `node.js` versions.
 
 ## Contents
 
@@ -44,7 +43,7 @@ Note that `retry` feature is temporary not supported in latest `node.js` version
 ## Features
 
 - Full-featured HTTP/S proxy (backed by [http-proxy](https://github.com/nodejitsu/node-http-proxy))
-- Supports WebSocket protocol proxy (replay not support yet)
+- Supports WebSocket protocol proxy (replay not supported yet)
 - Able to replay traffic to multiple backends (concurrently or sequentially)
 - Able to intercept HTTP requests and responses and modify them on-the-fly
 - Featured built-in path based router with params matching
@@ -53,14 +52,14 @@ Note that `retry` feature is temporary not supported in latest `node.js` version
 - Nested configuration per global/route scopes and forward/replay phases
 - Hierarchial middleware layer supporting different HTTP traffic flow phases
 - Easily integrable with connect/express via middleware
-- Able to run as standalone HTTP/S server (without connect/express)
+- Able to run as standalone HTTP/S server (no connect/express, uses `http` module)
 - Compatible with most of the existent connect/express middleware
 - Powerful programmatic control supporting dynamic configurations and zero-downtime
 - Supports both concurrent and sequential HTTP traffic flow modes
 - Small hackable core designed for extensibility
 - Fluent, elegant and evented [programmatic API](#programmatic-api)
 - Provides a [command-line interface](https://github.com/h2non/rocky-cli) with declarative [configuration file](#configuration-file)
-- Handles properly `gzip` responses, especially while intercepting payloads
+- Handles properly `gzip` responses, especially when intercepting payloads
 
 ## When `rocky` can be useful?
 
@@ -102,7 +101,7 @@ See [benchmark/README.md](https://github.com/h2non/rocky/tree/master/benchmark#r
 - [**0.1.x**](https://github.com/h2non/rocky/tree/v0.1.x) - First version. Initially released at `25.06.2015`. Beta
 - [**0.2.x**](https://github.com/h2non/rocky/tree/v0.2.x) - Released at `07.07.2015`. Major features and stability improvements.
 - [**0.3.x**](https://github.com/h2non/rocky/tree/v0.3.x) - Released at `24.07.2015`. Production-focused version.
-- [**0.4.x**](https://github.com/h2non/rocky/tree/master) - Released at `02.10.2015`. Introduces WebSocket support and other minor features.
+- [**0.4.x**](https://github.com/h2non/rocky/tree/master) - Released at `02.10.2015`. Introduces WebSocket support and other minor features. Stable & actively maintained. Recommended version.
 
 ### How does it work?
 
@@ -636,6 +635,9 @@ Shortcut to `rocky#server.close(cb)`
 Return: [`Route`](#routepath)
 
 Add a route handler for the given path for all HTTP methods
+
+#### rocky#route(method, path, [ ...middleware ])
+Return: [`Route`](#routepath)
 
 #### rocky#get(path, [ ...middleware ])
 Return: [`Route`](#routepath)

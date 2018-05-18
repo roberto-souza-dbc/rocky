@@ -30,6 +30,7 @@ const route = proxy
     next()
   })
   .useResponse(function (req, res, next) {
+    console.log('response:', res.statusCode)
     res.setHeader('Powered-By', 'rocky')
     console.log('Modified body:', res.body.toString())
     next()
@@ -59,11 +60,15 @@ http.createServer(function (req, res) {
   res.end()
 }).listen(3002)
 
+// setTimeout(function() {}, 10000)
+// return false
+
 // Client test request
 supertest('http://localhost:3000')
   .post('/foo')
   .send({'hello': 'world'})
   .expect(200)
   .end(function (err, res) {
+    console.error(err)
     console.log('Transformed body:', res.body)
   })
